@@ -31,6 +31,9 @@ const server = new Server({
 })
 
 // Internal http, udp, and websocket servers exposed as public properties.
+server.http
+server.udp
+server.ws
 
 // start tracker server listening! Use 0 to listen on a random free port.
 const port = 9987
@@ -55,9 +58,7 @@ server.on('update', function (addr: any) {
 })
 server.on('stop', function (addr: any) {})
 
-server.http
-server.udp
-server.ws
+
 
 server.on('error', function (err: any) {
     // fatal server error!

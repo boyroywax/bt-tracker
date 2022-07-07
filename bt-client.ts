@@ -104,7 +104,9 @@ const run = () => {
     })
     
     // start getting peers from the tracker
-    client.start()
+    // client.start()
+
+    client.update()
 
     client.on('update', function (data: any) {
         console.log('got an announce response from tracker: ' + data.announce)
