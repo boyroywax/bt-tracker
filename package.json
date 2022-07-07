@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@types/node": "^18.0.2",
+    "bittorrent-dht": "^10.0.4",
+    "bittorrent-tracker": "^9.19.0",
+    "global": "^4.4.0",
+    "typescript": "^4.7.4"
+  }
+}
