@@ -31,6 +31,30 @@ const server = new Server({
 })
 
 // Internal http, udp, and websocket servers exposed as public properties.
+
+// start tracker server listening! Use 0 to listen on a random free port.
+const port = 9987
+const hostname = "69.10.44.212"
+server.listen(port, hostname, () => {
+    // Do something on listening...
+    // get info hashes for all torrents in the tracker server
+    console.log(Object.keys(server.torrents))
+})
+
+// listen for individual tracker messages from peers:
+
+server.on('start', function (addr: any) {
+    console.log('got start message from ' + addr)
+})
+
+server.on('complete', function (addr: any) {
+    console.log( `update: ` + Object.keys(server.torrents) )
+})
+server.on('update', function (addr: any) {
+    console.log( `update: ` + Object.keys(server.torrents) )
+})
+server.on('stop', function (addr: any) {})
+
 server.http
 server.udp
 server.ws
@@ -67,28 +91,6 @@ server.on('listening', function () {
     console.log(`WebSocket tracker: ws://${wsHost}:${wsPort}`)
 
 })
-
-
-// start tracker server listening! Use 0 to listen on a random free port.
-const port = 9987
-const hostname = "69.10.44.212"
-server.listen(port, hostname, () => {
-    // Do something on listening...
-    // get info hashes for all torrents in the tracker server
-    console.log(Object.keys(server.torrents))
-})
-
-// listen for individual tracker messages from peers:
-
-server.on('start', function (addr: any) {
-    console.log('got start message from ' + addr)
-})
-
-server.on('complete', function (addr: any) {
-    console.log( `update: ` + Object.keys(server.torrents) )
-})
-server.on('update', function (addr: any) {})
-server.on('stop', function (addr: any) {})
 
 
 // // get info hashes for all torrents in the tracker server
